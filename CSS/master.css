@@ -56,7 +56,7 @@ header .burger-menu {
     gap: 0px 0px;
   }
 }
-@media (max-width: 800px) {
+@media (max-width: 840px) {
   header .nav {
     display: none;
   }
@@ -350,52 +350,94 @@ header .burger-menu {
 /* start our services */
 .our-services {
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 70%;
-  margin: 0 auto;
-  gap: 0 25px;
-  text-align: center;
-  margin-top: 460px;
-  margin-bottom: 200px;
+  margin: 0px auto;
+  margin-top: 500px;
+  margin-bottom: 150px;
 }
-.our-services::before,
-.our-services::after {
-  position: absolute;
-  content: "";
+.wrapper {
+  max-width: 1100px;
+  width: 100%;
+  position: relative;
+}
+.wrapper i {
   top: 50%;
-  transform: translateY(-50%);
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
-  background-repeat: no-repeat;
-  background-color: var(--main-color);
-  width: 51px;
-  height: 51px;
-  border-radius: 50%;
-  background-position: center;
+  height: 30px;
+  width: 30px;
   cursor: pointer;
+  font-size: 1.25rem;
+  position: absolute;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-50%);
+  transition: transform 0.1s linear;
+  z-index: 100;
+  background-color: var(--main-color);
+  color: white;
 }
-.our-services::before {
-  left: -28px;
-  background-image: url(../IMG/arrow-left.svg);
+.wrapper i:first-child{
+  left: -35px;
 }
-.our-services::after {
-  right: -28px;
-  background-image: url(../IMG/right.svg);
+.wrapper i:last-child{
+  right: -35px;
 }
-.our-services > div:not(:last-of-type) {
-  background-color: white;
-  width: 28%;
-  height: 320px;
-  border-radius: 10px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -o-border-radius: 10px;
-  box-shadow: -21px 26px 28px 1px rgba(0, 0, 0, 0.25);
+.wrapper .carousel{
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% / 3) - 12px);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 16px;
+  border-radius: 8px;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+.carousel.no-transition {
+  scroll-behavior: auto;
+}
+.carousel.dragging {
+  scroll-snap-type: none;
+  scroll-behavior: auto;
+}
+.carousel :where(.card, .img) {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.carousel .card {
+  user-select: none;
+  scroll-snap-align: start;
+  height: 342px;
+  list-style: none;
+  background: #fff;
+  padding-bottom: 15px;
+  flex-direction: column;
+  border-radius: 8px;
+  height: 300px;
+}
+.carousel .card .img {
+  width: 90%;
+  overflow: hidden;
+}
+.card .img img {
+  width: 100%;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 900px) {
+  .wrapper .carousel {
+    grid-auto-columns: calc((100% / 2) - 9px);
+  }
+}
+@media screen and (max-width: 600px) {
+  .wrapper .carousel {
+    grid-auto-columns: 100%;
+  }
 }
 .our-services > div .img {
   width: 90%;
@@ -410,6 +452,7 @@ header .burger-menu {
   scale: 1.05;
 }
 .our-services > div .description {
+  text-align: center;
   font-size: 28px;
   width: 90%;
   margin: 0 auto;
@@ -446,22 +489,22 @@ header .burger-menu {
   background: #f1dec9;
 }
 @media (max-width: 1000px) {
-  .our-services{
+  .our-services {
     margin-top: 300px;
   }
-  .our-services .our-services-absolute{
+  .our-services .our-services-absolute {
     width: 516px;
     height: 283px;
   }
   .our-services .our-services-absolute .title-absolute {
     font-size: 30px;
   }
-  .our-services .our-services-absolute .description-absolute{
+  .our-services .our-services-absolute .description-absolute {
     font-size: 16px;
   }
 }
 @media (max-width: 700px) {
-  .our-services .our-services-absolute{
+  .our-services .our-services-absolute {
     width: 316px;
     height: 283px;
     bottom: 88%;
@@ -469,12 +512,20 @@ header .burger-menu {
   .our-services .our-services-absolute .title-absolute {
     font-size: 20px;
   }
-  .our-services .our-services-absolute .description-absolute{
+  .our-services .our-services-absolute .description-absolute {
     font-size: 12px;
     line-height: 2;
   }
-  .our-services{
+  .our-services {
     margin-top: 300px;
+  }
+}
+@media (max-width: 450px) {
+  .our-services{
+    margin-top: 100px;
+  }
+  .our-services .our-services-absolute{
+    display: none;
   }
 }
 /* start testimonials */
@@ -570,9 +621,9 @@ footer .container > div .title {
   font-family: "Inter", sans-serif;
   margin-bottom: 20px;
 }
-footer .container > div .title::before{
+footer .container > div .title::before {
   position: absolute;
-  content: '';
+  content: "";
   left: 0;
   width: 70px;
   height: 3px;
@@ -603,12 +654,12 @@ footer .container > div .description {
     flex-wrap: wrap;
     justify-content: center;
   }
-  footer .container > div{
+  footer .container > div {
     width: 45%;
   }
 }
 @media (max-width: 650px) {
-  footer .container > div{
+  footer .container > div {
     width: 100%;
   }
 }
